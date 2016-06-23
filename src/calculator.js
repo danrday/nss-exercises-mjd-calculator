@@ -45,7 +45,7 @@ function enterButtonHandler(){
       firstInteger = undefined;
       secondInteger= undefined;
       operatorSelected = undefined;
-      $input.val("");
+      $input.val(calcResult);
       $input.focus()
 
     };
@@ -53,21 +53,28 @@ function enterButtonHandler(){
   }
 
 
-function clickHandler(){
+function clickHandler(event){
   firstInteger = $input.val();
   operatorSelected = event.target.id;
-  console.log(event.target.id)
+  console.log(event.target.id);
 
-  if (operatorSelected === "square" || "squareRoot") {
+
+  if (operatorSelected === "square" || operatorSelected === "squareRoot") {
     calcResult = window[operatorSelected](firstInteger);
     console.log("calcResult:", calcResult);
+    console.log("operatorSelected", operatorSelected);
       $input.focus()
       // firstInteger = undefined;
       // secondInteger= undefined;
       // operatorSelected = undefined;
+      $input.val(calcResult);
+  } else {
+    $input.val("");
+    $input.focus()
+    console.log("test test")
   };
 
-  $input.val("");
+  
 };
 
 //get DOM elements
