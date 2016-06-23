@@ -1,5 +1,5 @@
 function add(x, y) {
-  return x + y;
+  return parseInt(x) + parseInt(y);
 };
 
 function subtract(x, y) {
@@ -34,8 +34,6 @@ function enterButtonHandler(){
   if (firstInteger === undefined) {
     firstInteger = $input.val();
     alert("enter first integer");
-  } else if (operatorSelected === undefined) {
-    alert("select operator");
   } else if ($input.val === "") {
     alert("select second integer");
   } else {
@@ -47,15 +45,28 @@ function enterButtonHandler(){
       firstInteger = undefined;
       secondInteger= undefined;
       operatorSelected = undefined;
+      $input.val("");
+      $input.focus()
+
     };
 
   }
 
 
-function clickHandler(x){
+function clickHandler(){
   firstInteger = $input.val();
   operatorSelected = event.target.id;
   console.log(event.target.id)
+
+  if (operatorSelected === "square" || "squareRoot") {
+    calcResult = window[operatorSelected](firstInteger);
+    console.log("calcResult:", calcResult);
+      $input.focus()
+      // firstInteger = undefined;
+      // secondInteger= undefined;
+      // operatorSelected = undefined;
+  };
+
   $input.val("");
 };
 
